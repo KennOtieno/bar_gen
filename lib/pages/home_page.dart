@@ -4,12 +4,77 @@ class HomePage extends StatefulWidget {
   const HomePage ({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final TextEditingController _textController = TextEditingController();
+
+  String _barcodeData = '1234567890';
+  int _selectedBarcodeIndex = 0;
+
+  final List<BarcodeOption> _barcodeTypes = [
+    BarcodeOption('Code 128', Barcode.code128()),
+    BarcodeOption('Code 39', Barcode.code39()),
+    BarcodeOption('Code 93', Barcode.code93()),
+    BarcodeOption('EAN-13', Barcode.ean13()),
+    BarcodeOption('EAN-8', Barcode.ean8()),
+    BarcodeOption('QR Code', Barcode.qrCode()),
+    BarcodeOption('Data Matrix', Barcode.dataMatrix()),
+    BarcodeOption('PDF417', Barcode.pdf417()),
+  ];
+
+  Barcode get _selectedBarcodeType =>
+   _barcodeTypes[_selectedBarcodeIndex].barcode;
+
+   @override
+   void initState() {
+    super.initState();
+    _textController.text = _barcodeData;
+   }
+
+   void _generateBarcode() {
+    setState(() {
+      _barcodeData = _textController.text.isEmpty
+          ? '1234567890'
+          : _textController.text;
+    });
+
+void _copyToClipboard() {
+    Clipboard.setData(ClipboardData(text: _barcodeData));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Barcode is Copied')),
+    );
+  }
+
+  Widget _buildBarcodeWidget() {
+    try {
+      return Container(
+        padding: const EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3), // This changes position of shadow
+            ),
+          ],
+        )
+      )
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(),
+    return const Scaffold(),
   }
+}
+
+class BarcodeOption {
+  final String name;
+  final Barcode barcode;
+  BarcodeOption(this.name, this.barcode);
 }

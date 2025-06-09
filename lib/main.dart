@@ -1,3 +1,4 @@
+import 'package:bar_gen/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         visualDensity: visualDensity.adaptivePlatformDensity,
       ),
 
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
