@@ -61,8 +61,27 @@ void _copyToClipboard() {
               offset: const Offset(0, 3), // This changes position of shadow
             ),
           ],
-        )
-      )
+        ),
+        child: BarcodeWidget(
+          barcode: _selectedBarcodeType,
+          data: _barcodeData,
+          width: 300,
+          height: 100,
+          style: const TextStyle(
+            fontSize: 12.0,
+          ),
+        ),
+      );
+    } catch (e) {
+      return Container(
+        padding: const EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          color: Colors.red.shade50,
+          border: Border.all(color: Colors.redAccent),
+        ),
+
+        child: Column(),
+      );
     }
   }
 
