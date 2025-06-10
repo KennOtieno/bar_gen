@@ -110,7 +110,33 @@ void _copyToClipboard() {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(),
+    return Scaffold(
+      appBar: const AppBar(
+        title: Text(
+          'Bar Gen',
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
+
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.blue.shade100,
+              Colors.white,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+
+          )
+        ),
+      )
+    );
   }
 }
 
