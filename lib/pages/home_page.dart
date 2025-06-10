@@ -75,12 +75,34 @@ void _copyToClipboard() {
     } catch (e) {
       return Container(
         padding: const EdgeInsets.all(16.0),
-        decoration: BoxDecoration(
-          color: Colors.red.shade50,
-          border: Border.all(color: Colors.redAccent),
-        ),
 
-        child: Column(),
+        child: Column(
+          children: [
+            Icon(
+              Icons.error,
+              color: Colors.red,
+              size: 48.0,
+              SizedBox(height: 8.0),
+              Text(
+                'Invalid Barcode Data',
+                style: TextStyle(
+                  color: Colors.redAccent,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 4.0),
+
+              Text(
+                'Please confirm your input or try different BarCode',
+                style: TextStyle(
+                  color: Colors.red.shade700,
+                  fontSize: 14.0,
+                ),
+                textAlign: TextAlign.center,
+              )
+            ),
+          ],
+        ),
       );
     }
   }
