@@ -132,9 +132,57 @@ void _copyToClipboard() {
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-
-          )
+          ),
         ),
+        child: const SingleChildScrollView(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Card(
+                color: Colors.white,
+                elevation: 4,
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Input product data',
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue,
+                        ),
+                      ),
+                      SizedBox(height: 16.0),
+                      TextField(
+                        controller: _textController,
+                        decoration: InputDecoration(
+                          labelText: 'Enter barcode data',
+                          hintText: 'Enter Product Data, SKU, or Code',
+                          border: OutlineInputBorder(
+                            borderRadius: const BorderRadius.circular(8.0),                            
+                          ),
+                          prefix: Icon(
+                            Icons.qr_code,
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _textController.clear();
+                              });
+                            }
+                          )
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ),
+            ],
+          )
+        )
       )
     );
   }
