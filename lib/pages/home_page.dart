@@ -172,8 +172,11 @@ void _copyToClipboard() {
                               setState(() {
                                 _textController.clear();
                               });
-                            }
-                          )
+                            },
+                            icon: Icon(
+                              icons.clear,
+                            ),
+                          ),
                         ),
                       )
                     ],
