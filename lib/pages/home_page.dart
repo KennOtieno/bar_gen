@@ -47,6 +47,7 @@ void _copyToClipboard() {
     );
   }
 
+  // ignore: no_leading_underscores_for_local_identifiers
   Widget _buildBarcodeWidget() {
     try {
       return Container(
@@ -70,10 +71,8 @@ void _copyToClipboard() {
           style: const TextStyle(
             fontSize: 12.0,
           ),
-        ),
-      );
-    } catch (e) {
-      return Container(
+          errorBuilder: (context, error) {
+            return Container(
         padding: const EdgeInsets.all(16.0),
 
         child: Column(
@@ -104,6 +103,11 @@ void _copyToClipboard() {
           ],
         ),
       );
+          },
+        ),
+      );
+    } catch (e) {
+      return;
     }
   }
 
@@ -174,7 +178,7 @@ void _copyToClipboard() {
                               });
                             },
                             icon: Icon(
-                              icons.clear,
+                              Icons.clear,
                             ),
                           ),
                         ),
@@ -261,14 +265,16 @@ void _copyToClipboard() {
                         ],
                       ),
                       SizedBox(height: 16.0),
+                      _buildBarcodeWidget(),
+                      SizedBox(height: 16.0),
                     ],
                   ),
-                )
-              )
+                ),
+              ),
             ],
-          )
-        )
-      )
+          ),
+        ),
+      ),
     );
   }
 }
