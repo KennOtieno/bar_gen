@@ -243,8 +243,24 @@ void _copyToClipboard() {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [],
+                        children: [
+                          Text(
+                            'Generated Barcode',
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                            ),
+                          ),
+                          IconButon(
+                            onPressed: _copyToClipboard,
+                            icon: Icon(
+                              Icons.copy,
+                            ),
+                          )
+                        ],
                       ),
+                      SizedBox(height: 16.0),
                     ],
                   ),
                 )
