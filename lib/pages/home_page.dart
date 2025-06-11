@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:barcode_widget/barcode_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage ({super.key});
@@ -67,7 +69,7 @@ void _copyToClipboard() {
           barcode: _selectedBarcodeType,
           data: _barcodeData,
           width: 300,
-          height: 100,
+          height: 170,
           style: const TextStyle(
             fontSize: 12.0,
           ),
@@ -81,9 +83,9 @@ void _copyToClipboard() {
               Icons.error,
               color: Colors.red,
               size: 48.0,
-              SizedBox(height: 8.0),
+              SizedBox(height: 4.0),
               Text(
-                'Invalid Barcode Data',
+                error.toString(),
                 style: TextStyle(
                   color: Colors.redAccent,
                   fontWeight: FontWeight.bold,
@@ -107,7 +109,7 @@ void _copyToClipboard() {
         ),
       );
     } catch (e) {
-      return;
+      return Container();
     }
   }
 
