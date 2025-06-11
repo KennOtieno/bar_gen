@@ -178,11 +178,62 @@ void _copyToClipboard() {
                             ),
                           ),
                         ),
-                      )
+                        
+                        onChanged: _generateBarcode(),
+                      ),
+                      SizedBox(height: 16.0),
+                      Text(
+                        'Barcode Type',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue,
+                        ),
+                      ),
+                      SizedBox(height: 8.0),
+
+                      const Container(
+                        padding: EdgeInsets.symmetric(horizontal: 11.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey.shade400,
+                          ),
+
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<int>(
+                            isExpanded: true,
+                            value: _selectedBarcodeIndex,
+                            icon: const Icon(
+                              Icons.arrow_drop_down,
+                            ),
+                            items: _barcodeTypes.asMap().entries.map(entry) {
+                              return DropdownMenuItem<int>(
+                                value: entry.key,
+                                child: Text(
+                                  entry.value.name,
+                                ),
+                              );
+                            }
+                          ).toList(),
+                          onChanged: (int? newValue) {
+                            if (newValue != null) {
+                              setState(() {
+                                _selectedBarcodeIndex = newValue;
+                                
+                              });
+                            }
+                          }
+
+                        ),
+                      ),
                     ],
                   ),
-                )
+                ),
               ),
+              SizedBox(height: 24.0),
             ],
           )
         )
