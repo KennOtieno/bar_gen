@@ -86,12 +86,12 @@ void _copyToClipboard() {
               SizedBox(height: 4.0),
               Text(
                 error.toString(),
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.redAccent,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 4.0),
+              const SizedBox(height: 4.0),
 
               Text(
                 'Please confirm your input or try different BarCode',
@@ -168,7 +168,7 @@ void _copyToClipboard() {
                           labelText: 'Enter barcode data',
                           hintText: 'Enter Product Data, SKU, or Code',
                           border: OutlineInputBorder(
-                            borderRadius: const BorderRadius.circular(8.0),                            
+                            borderRadius: BorderRadius.circular(8.0),                            
                           ),
                           prefix: Icon(
                             Icons.qr_code,
@@ -198,7 +198,7 @@ void _copyToClipboard() {
                       ),
                       SizedBox(height: 8.0),
 
-                      const Container(
+                      Container(
                         padding: EdgeInsets.symmetric(horizontal: 11.0),
                         decoration: BoxDecoration(
                           border: Border.all(
@@ -212,7 +212,7 @@ void _copyToClipboard() {
                           child: DropdownButton<int>(
                             isExpanded: true,
                             value: _selectedBarcodeIndex,
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.arrow_drop_down,
                             ),
                             items: _barcodeTypes.asMap().entries.map(entry) {
@@ -258,7 +258,7 @@ void _copyToClipboard() {
                               color: Colors.blue,
                             ),
                           ),
-                          IconButon(
+                          IconButton(
                             onPressed: _copyToClipboard,
                             icon: Icon(
                               Icons.copy,
