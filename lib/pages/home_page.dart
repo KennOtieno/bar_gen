@@ -234,6 +234,21 @@ void _copyToClipboard() {
                 ),
               ),
               SizedBox(height: 24.0),
+              Card(
+                color: Colors.white,
+                elevation: 4,
+                child: Padding(
+                  padding: EdgeInsetsGeometry.all(16.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [],
+                      ),
+                    ],
+                  ),
+                )
+              )
             ],
           )
         )
@@ -241,9 +256,13 @@ void _copyToClipboard() {
     );
   }
 }
-
+}
 class BarcodeOption {
   final String name;
   final Barcode barcode;
+
   BarcodeOption(this.name, this.barcode);
+}
+
+class Barcode {
 }
