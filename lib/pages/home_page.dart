@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:barcode_widget/barcode_widget.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage ({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -27,41 +27,42 @@ class _HomePageState extends State<HomePage> {
   ];
 
   Barcode get _selectedBarcodeType =>
-   _barcodeTypes[_selectedBarcodeIndex].barcode;
+      _barcodeTypes[_selectedBarcodeIndex].barcode;
 
-   @override
-   void initState() {
+  @override
+  void initState() {
     super.initState();
     _textController.text = _barcodeData;
-   }
+  }
 
-   void _generateBarcode() {
+  void _generateBarcode() {
     setState(() {
       _barcodeData = _textController.text.isEmpty
           ? '1234567890'
           : _textController.text;
     });
+  }
 
-void _copyToClipboard() {
+  void _copyToClipboard() {
     Clipboard.setData(ClipboardData(text: _barcodeData));
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Barcode is Copied')),
     );
   }
 
-  // ignore: no_leading_underscores_for_local_identifiers
   Widget _buildBarcodeWidget() {
     try {
       return Container(
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
+          color: Colors.white,
           borderRadius: BorderRadius.circular(8.0),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.2),
               spreadRadius: 2,
               blurRadius: 5,
-              offset: const Offset(0, 3), // This changes position of shadow
+              offset: const Offset(0, 3),
             ),
           ],
         ),
@@ -75,36 +76,34 @@ void _copyToClipboard() {
           ),
           errorBuilder: (context, error) {
             return Container(
-        padding: const EdgeInsets.all(16.0),
-
-        child: Column(
-          children: [
-            Icon(
-              Icons.error,
-              color: Colors.red,
-              size: 48.0,
-              SizedBox(height: 4.0),
-              Text(
-                error.toString(),
-                style: const TextStyle(
-                  color: Colors.redAccent,
-                  fontWeight: FontWeight.bold,
-                ),
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  const Icon(
+                    Icons.error,
+                    color: Colors.red,
+                    size: 48.0,
+                  ),
+                  const SizedBox(height: 4.0),
+                  Text(
+                    error.toString(),
+                    style: const TextStyle(
+                      color: Colors.redAccent,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 4.0),
+                  Text(
+                    'Please confirm your input or try different BarCode',
+                    style: TextStyle(
+                      color: Colors.red.shade700,
+                      fontSize: 14.0,
+                    ),
+                    textAlign: TextAlign.center,
+                  )
+                ],
               ),
-              const SizedBox(height: 4.0),
-
-              Text(
-                'Please confirm your input or try different BarCode',
-                style: TextStyle(
-                  color: Colors.red.shade700,
-                  fontSize: 14.0,
-                ),
-                textAlign: TextAlign.center,
-              )
-            ),
-          ],
-        ),
-      );
+            );
           },
         ),
       );
@@ -113,24 +112,20 @@ void _copyToClipboard() {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBar(
-        title: Text(
-          'Bar Gen',
-        ),
+      appBar: AppBar(
+        title: const Text('Bar Gen'),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
       ),
-
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
               Colors.blue.shade100,
@@ -140,8 +135,8 @@ void _copyToClipboard() {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: const SingleChildScrollView(
-          padding: EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -149,11 +144,11 @@ void _copyToClipboard() {
                 color: Colors.white,
                 elevation: 4,
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Input product data',
                         style: TextStyle(
                           fontSize: 18.0,
@@ -161,34 +156,29 @@ void _copyToClipboard() {
                           color: Colors.blue,
                         ),
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       TextField(
                         controller: _textController,
                         decoration: InputDecoration(
                           labelText: 'Enter barcode data',
                           hintText: 'Enter Product Data, SKU, or Code',
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),                            
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
-                          prefix: Icon(
-                            Icons.qr_code,
-                          ),
+                          prefixIcon: const Icon(Icons.qr_code),
                           suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
                                 _textController.clear();
                               });
                             },
-                            icon: Icon(
-                              Icons.clear,
-                            ),
+                            icon: const Icon(Icons.clear),
                           ),
                         ),
-                        
-                        onChanged: _generateBarcode(),
+                        onChanged: (value) => _generateBarcode(),
                       ),
-                      SizedBox(height: 16.0),
-                      Text(
+                      const SizedBox(height: 16.0),
+                      const Text(
                         'Barcode Type',
                         style: TextStyle(
                           fontSize: 16.0,
@@ -196,61 +186,52 @@ void _copyToClipboard() {
                           color: Colors.blue,
                         ),
                       ),
-                      SizedBox(height: 8.0),
-
+                      const SizedBox(height: 8.0),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 11.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 11.0),
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: Colors.grey.shade400,
                           ),
-
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton<int>(
                             isExpanded: true,
                             value: _selectedBarcodeIndex,
-                            icon: Icon(
-                              Icons.arrow_drop_down,
-                            ),
-                            items: _barcodeTypes.asMap().entries.map(entry) {
+                            icon: const Icon(Icons.arrow_drop_down),
+                            items: _barcodeTypes.asMap().entries.map((entry) {
                               return DropdownMenuItem<int>(
                                 value: entry.key,
-                                child: Text(
-                                  entry.value.name,
-                                ),
+                                child: Text(entry.value.name),
                               );
-                            }
-                          ).toList(),
-                          onChanged: (int? newValue) {
-                            if (newValue != null) {
-                              setState(() {
-                                _selectedBarcodeIndex = newValue;
-                                
-                              });
-                            }
-                          }
-
+                            }).toList(),
+                            onChanged: (int? newValue) {
+                              if (newValue != null) {
+                                setState(() {
+                                  _selectedBarcodeIndex = newValue;
+                                });
+                              }
+                            },
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: 24.0),
+              const SizedBox(height: 24.0),
               Card(
                 color: Colors.white,
                 elevation: 4,
                 child: Padding(
-                  padding: EdgeInsetsGeometry.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Generated Barcode',
                             style: TextStyle(
                               fontSize: 18.0,
@@ -260,15 +241,13 @@ void _copyToClipboard() {
                           ),
                           IconButton(
                             onPressed: _copyToClipboard,
-                            icon: Icon(
-                              Icons.copy,
-                            ),
+                            icon: const Icon(Icons.copy),
                           )
                         ],
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       _buildBarcodeWidget(),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                     ],
                   ),
                 ),
@@ -280,13 +259,10 @@ void _copyToClipboard() {
     );
   }
 }
-}
+
 class BarcodeOption {
   final String name;
   final Barcode barcode;
 
   BarcodeOption(this.name, this.barcode);
-}
-
-class Barcode {
 }
