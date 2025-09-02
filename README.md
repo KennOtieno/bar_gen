@@ -1,16 +1,41 @@
-# bar_gen
+# 📱 Barcode Generator App
 
-A new Flutter project.
+A simple and fast **mobile application built with Flutter** that allows users to generate barcodes easily.  
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Features
+- Generate barcodes instantly from any text or number.
+- Supports multiple barcode formats (e.g., Code128, QR, EAN).
+- Clean and user-friendly interface.
+- Works offline – no internet required.
+- Lightweight and fast.
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🚀 Getting Started
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Prerequisites
+Make sure you have the following installed:
+- [Flutter SDK](https://flutter.dev/docs/get-started/install) (latest stable version)
+- Android Studio / VS Code with Flutter & Dart plugins
+- A device or emulator for testing
+
+### Installation
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/KennOtieno/bar_gen.git
+
+
+##  🛠️ Built With
+
+Flutter
+ - UI framework
+
+Dart
+ - Programming language
+
+barcode
+ / qr_flutter
+ - For generating barcodes & QR codes
+
